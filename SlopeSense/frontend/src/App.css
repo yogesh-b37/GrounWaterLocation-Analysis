@@ -1,7 +1,7 @@
 /* Mappls-inspired Design for SlopeSense */
 :root {
-  --primary-blue: #007BFF;
-  --secondary-blue: #0056CC;
+  --primary-blue: #7f4d93;
+  --secondary-blue: #4faba6;
   --light-blue: #E3F2FD;
   --dark-blue: #0D47A1;
   --gray-50: #FAFAFA;
@@ -15,7 +15,7 @@
   --gray-800: #424242;
   --gray-900: #212121;
   --success: #4CAF50;
-  --warning: #FF9800;
+  --warning: #90c2ba;
   --error: #F44336;
   --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
   --shadow-medium: 0 4px 8px rgba(0,0,0,0.12);
@@ -103,6 +103,17 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.sidebar-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sidebar-tab-icon {
+  font-size: 1.1rem;
 }
 
 .sidebar-tab:hover,
@@ -819,7 +830,8 @@ main {
 }
 
 .suitability-badge.suitability-moderate {
-  background: #FF5722;
+  background: linear-gradient(135deg, #ffb74d, #ff5722);
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.18);
 }
 
 .point-details {
