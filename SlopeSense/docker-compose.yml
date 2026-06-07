@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6.0
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: slopesense
+
+  backend:
+    build:
+      context: ./
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    ports:
+      - '3003:3003'
+    environment:
+      MONGO_URI: mongodb://mongo:27017/slopesense
+      PYTHON_PATH: /usr/bin/python3
+      PORT: 3003
+    depends_on:
+      - mongo
+    volumes:
+      - ./backend/uploads:/usr/src/app/backend/uploads
+      - ./backend/reports:/usr/src/app/backend/reports
+
+  frontend:
+    build:
+      context: ./
+      dockerfile: frontend/Dockerfile
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:

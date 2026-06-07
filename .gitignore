@@ -46,3 +46,6 @@ Thumbs.db
 
 # Metro Bundler
 .metro-bundler/
+
+# Ignore generated backend reports in nested SlopeSense project
+SlopeSense/backend/reports/
