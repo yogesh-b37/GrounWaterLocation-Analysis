@@ -37,6 +37,50 @@ const waterpointIcon = L.icon({
   shadowSize: [41, 41],
 });
 
+const moderatePointIcon = L.icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+const goodPointIcon = L.icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+const veryGoodPointIcon = L.icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+const excellentPointIcon = L.icon({
+  iconUrl:
+    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
 const currentLocationIcon = L.icon({
   iconUrl:
     "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
@@ -47,6 +91,22 @@ const currentLocationIcon = L.icon({
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
+
+const getSuitabilityIcon = (suitability) => {
+  const key = String(suitability || "").toLowerCase().replace(/\s+/g, "-");
+  switch (key) {
+    case "excellent":
+      return excellentPointIcon;
+    case "very-good":
+      return veryGoodPointIcon;
+    case "good":
+      return goodPointIcon;
+    case "moderate":
+      return moderatePointIcon;
+    default:
+      return waterpointIcon;
+  }
+};
 
 // Component for current location marker
 function CurrentLocationMarker({ currentLocation }) {
@@ -96,7 +156,11 @@ function GroundwaterPoints({ points }) {
   return (
     <>
       {points.map((point, idx) => (
-        <Marker key={idx} position={point.coords} icon={waterpointIcon}>
+        <Marker
+          key={idx}
+          position={point.coords}
+          icon={getSuitabilityIcon(point.suitability)}
+        >
           <Popup>
             <strong>Groundwater Charging Point {idx + 1}</strong>
             <br />
@@ -1322,6 +1386,7 @@ function App() {
               className={sidebarTab === "history" ? "sidebar-tab active" : "sidebar-tab"}
               onClick={() => setSidebarTab("history")}
             >
+              <span className="sidebar-tab-icon">🕘</span>
               History
             </button>
             <button
@@ -1329,6 +1394,7 @@ function App() {
               className={sidebarTab === "profile" ? "sidebar-tab active" : "sidebar-tab"}
               onClick={() => setSidebarTab("profile")}
             >
+              <span className="sidebar-tab-icon">👤</span>
               Profile
             </button>
             <button
@@ -1336,6 +1402,7 @@ function App() {
               className={sidebarTab === "feedback" ? "sidebar-tab active" : "sidebar-tab"}
               onClick={() => setSidebarTab("feedback")}
             >
+              <span className="sidebar-tab-icon">✉️</span>
               Feedback
             </button>
           </div>
