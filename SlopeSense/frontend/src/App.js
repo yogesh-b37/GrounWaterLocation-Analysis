@@ -172,7 +172,6 @@ function App() {
   const [rainSummary, setRainSummary] = useState(null);
   const [weatherLoading, setWeatherLoading] = useState(false);
   const [weatherError, setWeatherError] = useState(null);
-  const [geminiLoading, setGeminiLoading] = useState(false);
   const [sidebarTab, setSidebarTab] = useState("history");
   const [historyRecords, setHistoryRecords] = useState(() =>
     JSON.parse(localStorage.getItem("slopeSenseHistory") || "[]"),
@@ -788,42 +787,6 @@ function App() {
       hour: "2-digit",
       minute: "2-digit",
     });
-
-  const generateGroundwaterReport = () => {
-    if (groundwaterPoints.length === 0) return "";
-
-    let report = "GROUNDWATER CHARGING POINTS LOCATION REPORT\n";
-    report += "=".repeat(50) + "\n\n";
-    report += `Total Charging Points Identified: ${groundwaterPoints.length}\n`;
-    report += `Search Location: (${selectedLocation.lat.toFixed(6)}, ${selectedLocation.lng.toFixed(6)})\n`;
-    report += `Detected Slope: ${slopeValue.toFixed(2)}°\n\n`;
-    report += "CHARGING POINT LOCATIONS:\n";
-    report += "-".repeat(50) + "\n";
-
-    groundwaterPoints.forEach((point, idx) => {
-      report += `\nPoint ${idx + 1}:\n`;
-      report += `  Latitude:  ${point.coords[0].toFixed(6)}\n`;
-      report += `  Longitude: ${point.coords[1].toFixed(6)}\n`;
-      report += `  GPS Format: ${point.coords[0].toFixed(6)}, ${point.coords[1].toFixed(6)}\n`;
-      report += `  Slope: ${point.slope}°\n`;
-      report += `  Suitability: ${point.suitability}\n`;
-      report += `  Recommended Method: ${point.method}\n`;
-      report += `  Reason: ${point.reason}\n`;
-    });
-
-    report += "\nRAINFALL SUMMARY:\n";
-    if (rainSummary) {
-      report += `  Period: ${rainSummary.period || 'N/A'}\n`;
-      report += `  Annual precipitation: ${rainSummary.totalPrecipitation != null ? rainSummary.totalPrecipitation.toFixed(0) + ' mm' : 'N/A'}\n`;
-      report += `  Rainy days: ${rainSummary.rainyDays != null ? rainSummary.rainyDays : 'N/A'}\n`;
-      report += `  Peak month: ${rainSummary.peakMonth || 'N/A'}\n`;
-      report += `  Rainy season: ${rainSummary.rainySeason || 'N/A'}\n`;
-    } else {
-      report += "  Rainfall summary unavailable.\n";
-    }
-
-    return report;
-  };
 
   const handleCoordinateSearch = async (e) => {
     e.preventDefault();
