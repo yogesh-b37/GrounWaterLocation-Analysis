@@ -78,6 +78,8 @@ const Report = mongoose.models.Report || mongoose.model('Report', reportSchema);
 const app = express();
 const port = process.env.PORT ? Number(process.env.PORT) : 3003;
 
+app.set('trust proxy', true);
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -457,7 +459,10 @@ app.post('/report', upload.single('image'), async (req, res) => {
             imagePath: req.file ? req.file.path : null,
         });
 
-        const baseUrl = `${req.protocol}://${req.get('host')}`;
+        const protocol = req.headers['x-forwarded-proto']
+            ? String(req.headers['x-forwarded-proto']).split(',')[0].trim()
+            : req.protocol;
+        const baseUrl = `${protocol}://${req.get('host')}`;
         const pdfUrl = `${baseUrl}/download-report/${encodeURIComponent(path.basename(pdfPath))}`;
         const transporter = createMailTransport();
         const emailRequested = Boolean(requestedEmail);
