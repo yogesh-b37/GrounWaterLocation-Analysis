@@ -76,7 +76,7 @@ const reportSchema = new mongoose.Schema({
 const Report = mongoose.models.Report || mongoose.model('Report', reportSchema);
 
 const app = express();
-const port = 3003; // Changed to 3003
+const port = process.env.PORT ? Number(process.env.PORT) : 3003;
 
 // Middleware
 app.use(cors());
