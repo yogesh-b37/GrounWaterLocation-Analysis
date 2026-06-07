@@ -1,0 +1,48 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React Native specific
+*.jsbundle
+*.bundle
+
+# Android
+android/app/debug
+android/app/release
+.gradle
+.m2
+
+# iOS
+ios/Pods
+ios/Podfile.lock
+*.xcworkspace
+
+# Build
+build/
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Cache
+.cache/
+*.cache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Metro Bundler
+.metro-bundler/
