@@ -6,12 +6,12 @@ RUN apt-get update && apt-get install -y python3 python3-pip build-essential && 
 WORKDIR /usr/src/app
 
 # Install backend dependencies
-COPY backend/package*.json ./backend/
+COPY SlopeSense/backend/package*.json ./backend/
 RUN cd backend && npm ci --only=production
 
 # Copy application code
-COPY backend ./backend
-COPY ai-model ./ai-model
+COPY SlopeSense/backend ./backend
+COPY SlopeSense/ai-model ./ai-model
 
 # Install AI model Python dependencies if present
 RUN if [ -f ai-model/requirements.txt ]; then pip3 install --no-cache-dir -r ai-model/requirements.txt; fi
