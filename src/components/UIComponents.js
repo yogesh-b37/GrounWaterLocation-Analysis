@@ -18,23 +18,28 @@ export const GradientButton = ({
   };
 
   return (
-    <LinearGradient
-      colors={[gradient.start, gradient.end]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
+    <TouchableOpacity
+      onPress={onPress}
+      disabled={disabled}
+      activeOpacity={0.8}
       style={[
         styles.button,
         sizeStyles[size],
         disabled && { opacity: 0.5 },
-        style
+        style,
       ]}
     >
-      <TouchableOpacity onPress={onPress} disabled={disabled}>
+      <LinearGradient
+        colors={[gradient.start, gradient.end]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.gradientInner}
+      >
         <Text style={[styles.buttonText, { fontSize: typography[size === 'lg' ? 'body' : 'bodySmall'].fontSize }]}>
           {title}
         </Text>
-      </TouchableOpacity>
-    </LinearGradient>
+      </LinearGradient>
+    </TouchableOpacity>
   );
 };
 
@@ -106,9 +111,12 @@ export const Header = ({ title, subtitle, gradient = colors.primary }) => (
 export const TabButton = ({ icon, label, active, onPress, color }) => (
   <TouchableOpacity
     onPress={onPress}
-    style={[styles.tabButton, active && { backgroundColor: colors.surfaceLight }]}
+    style={[
+      styles.tabButton,
+      active && { backgroundColor: colors.surfaceLight },
+    ]}
   >
-    <Text style={{ fontSize: 24, marginBottom: spacing.xs }}>{icon}</Text>
+    <Text style={{ fontSize: 22, marginBottom: spacing.xs }}>{icon}</Text>
     <Text style={[styles.tabLabel, active && { color }]}>{label}</Text>
   </TouchableOpacity>
 );
@@ -122,6 +130,7 @@ export const InfoBadge = ({ label, value, color }) => (
 
 const styles = StyleSheet.create({
   button: {
+    minWidth: 120,
     borderRadius: borderRadius.lg,
     justifyContent: 'center',
     alignItems: 'center',
@@ -134,6 +143,13 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.surface,
     fontWeight: '600',
+  },
+  gradientInner: {
+    width: '100%',
+    height: '100%',
+    borderRadius: borderRadius.lg,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   card: {
     backgroundColor: colors.surface,
@@ -201,7 +217,9 @@ const styles = StyleSheet.create({
   tabButton: {
     alignItems: 'center',
     flex: 1,
-    paddingVertical: spacing.md,
+    minWidth: 72,
+    marginHorizontal: 4,
+    paddingVertical: spacing.sm,
     borderRadius: borderRadius.md,
   },
   tabLabel: {

@@ -177,18 +177,22 @@ export const AnalysisScreen = ({ route }) => {
 
         {/* Action Buttons */}
         <View style={styles.actionButtons}>
-          <GradientButton
-            title="Save Analysis"
-            onPress={() => alert('Analysis saved!')}
-            gradient={colors.primary}
-            size="md"
-          />
-          <GradientButton
-            title="Share Report"
-            onPress={() => alert('Sharing...')}
-            gradient={colors.secondary}
-            size="md"
-          />
+          <View style={styles.actionButton}>
+            <GradientButton
+              title="Save Analysis"
+              onPress={() => alert('Analysis saved!')}
+              gradient={colors.primary}
+              size="md"
+            />
+          </View>
+          <View style={styles.actionButton}>
+            <GradientButton
+              title="Share Report"
+              onPress={() => alert('Sharing...')}
+              gradient={colors.secondary}
+              size="md"
+            />
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -206,15 +210,18 @@ const styles = StyleSheet.create({
   },
   toolSelector: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     marginBottom: spacing.lg,
-    gap: spacing.sm,
   },
   toolButton: {
     flex: 1,
+    minWidth: 128,
     borderRadius: borderRadius.md,
     paddingVertical: spacing.md,
     alignItems: 'center',
     justifyContent: 'center',
+    marginRight: spacing.sm,
+    marginBottom: spacing.sm,
     elevation: 3,
     shadowColor: colors.shadow,
     shadowOffset: { width: 0, height: 2 },
@@ -277,15 +284,18 @@ const styles = StyleSheet.create({
   resultGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: spacing.md,
+    justifyContent: 'space-between',
+    marginHorizontal: -spacing.sm,
   },
   resultItem: {
-    flex: 1,
-    minWidth: width / 2 - spacing.lg - spacing.md,
+    flexBasis: '48%',
+    minWidth: 140,
     backgroundColor: colors.surfaceLight,
     borderRadius: borderRadius.md,
     padding: spacing.md,
     alignItems: 'center',
+    marginHorizontal: spacing.sm,
+    marginBottom: spacing.sm,
   },
   resultLabel: {
     fontSize: 12,
@@ -349,7 +359,14 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   actionButtons: {
-    gap: spacing.md,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     marginVertical: spacing.lg,
+  },
+  actionButton: {
+    flex: 1,
+    minWidth: 140,
+    marginBottom: spacing.sm,
   },
 });

@@ -163,15 +163,18 @@ const styles = StyleSheet.create({
   },
   statsContainer: {
     flexDirection: 'row',
-    gap: spacing.md,
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     marginBottom: spacing.lg,
   },
   statBox: {
-    flex: 1,
+    flexBasis: '30%',
+    minWidth: 110,
     borderRadius: borderRadius.md,
     padding: spacing.md,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: spacing.sm,
   },
   statLabel: {
     fontSize: 12,
@@ -185,11 +188,10 @@ const styles = StyleSheet.create({
   },
   filterContainer: {
     flexDirection: 'row',
-    gap: spacing.sm,
+    flexWrap: 'wrap',
     marginBottom: spacing.lg,
   },
   filterButton: {
-    flex: 1,
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.md,
     borderRadius: borderRadius.md,
@@ -197,6 +199,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.surfaceLight,
     alignItems: 'center',
+    marginRight: spacing.sm,
+    marginBottom: spacing.sm,
   },
   filterButtonActive: {
     backgroundColor: colors.blue,

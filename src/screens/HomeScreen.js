@@ -19,7 +19,11 @@ export const HomeScreen = ({ navigation }) => {
         gradient={colors.primary}
       />
       
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.content}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.welcomeSection}>
           <Text style={styles.welcomeTitle}>Welcome Back! 👋</Text>
           <Text style={styles.welcomeSubtitle}>Real-time slope analysis at your fingertips</Text>
@@ -27,6 +31,7 @@ export const HomeScreen = ({ navigation }) => {
 
         <View style={styles.quickStatsRow}>
           <StatCard 
+            style={styles.quickStatCard}
             icon="📊" 
             title="Total Sites" 
             value="12"
@@ -34,6 +39,7 @@ export const HomeScreen = ({ navigation }) => {
             color={colors.blue}
           />
           <StatCard 
+            style={styles.quickStatCard}
             icon="⚠️" 
             title="Risk Areas" 
             value="3"
@@ -44,6 +50,7 @@ export const HomeScreen = ({ navigation }) => {
 
         <View style={styles.quickStatsRow}>
           <StatCard 
+            style={styles.quickStatCard}
             icon="✅" 
             title="Completed" 
             value="48"
@@ -51,6 +58,7 @@ export const HomeScreen = ({ navigation }) => {
             color={colors.green}
           />
           <StatCard 
+            style={styles.quickStatCard}
             icon="📈" 
             title="Avg Slope" 
             value="28°"
@@ -136,8 +144,16 @@ const styles = StyleSheet.create({
   },
   quickStatsRow: {
     flexDirection: 'row',
-    gap: spacing.md,
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     marginBottom: spacing.md,
+  },
+  quickStatCard: {
+    width: '48%',
+    minWidth: 150,
+  },
+  scrollContent: {
+    paddingBottom: spacing.xxl,
   },
   sectionTitle: {
     fontSize: 18,

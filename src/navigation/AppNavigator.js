@@ -140,11 +140,14 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: -4 },
     shadowOpacity: 0.15,
     shadowRadius: 8,
+    paddingTop: 8,
+    paddingBottom: 12,
+    paddingHorizontal: 10,
+    backgroundColor: colors.surface,
   },
   tabBarContent: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 8,
-    paddingHorizontal: 8,
+    alignItems: 'center',
   },
 });
